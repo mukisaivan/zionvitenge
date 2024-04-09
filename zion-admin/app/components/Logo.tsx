@@ -17,3 +17,22 @@ export default function Logo() {
     </>
   )
 }
+
+
+export function Somecomponent() {
+  
+  const names = [
+    { name: 'ivan', likes: 'gaming' },
+    { name: 'jay', likes: 'coding' },
+    { name: 'elon', likes: 'tesla' }
+  ]
+
+  const derivedmap: {[key: string]: string | number}[] = names.map(item => {
+    const container: {[key:string]: string | number} = {};
+    container[item.name] = item.likes
+    container.numberOfLettersInName  = item.name.length
+    return container
+  })
+  console.log(derivedmap);
+  
+}

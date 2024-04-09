@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "./providers/page";
+import Logo from "./components/Logo";
 
 export const metadata: Metadata = {
   title: "Zion Centre",
@@ -8,17 +9,18 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  children, 
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode,
 }>) {
   return (
     <html lang="en">
-      <Providers>
-        <body>
+      <body className="">
+        <Providers>
+          <Logo/>
           {children}
-        </body>
-      </Providers>
+        </Providers>
+      </body>
     </html>
   );
 }
