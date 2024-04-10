@@ -4,17 +4,16 @@ import Image from "next/image";
 
 export default function Logo() {
   return (
-    <>
+    <header className='sticky top-0'>
       <Image
-        className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
         src="/logo.png"
-        alt="Next.js Logo"
+        alt="Logo"
         width={180}
         height={37}
         priority
       />
   
-    </>
+    </header>
   )
 }
 
@@ -27,10 +26,11 @@ export function Somecomponent() {
     { name: 'elon', likes: 'tesla' }
   ]
 
-  const derivedmap: {[key: string]: string | number}[] = names.map(item => {
-    const container: {[key:string]: string | number} = {};
+  const derivedmap: {[key: string]: string | number | boolean }[] = names.map(item => {
+    const container: {[key:string]: string | number | boolean} = {};
     container[item.name] = item.likes
-    container.numberOfLettersInName  = item.name.length
+    container.numberOfLettersInName = item.name.length
+    container.knowsEnglish = false
     return container
   })
   console.log(derivedmap);

@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="">
+      <body className="h-screen overflow-x-hidden">
         <Providers>
           <Logo/>
           {children}
