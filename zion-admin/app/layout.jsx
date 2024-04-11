@@ -1,12 +1,11 @@
-import "./globals.css";
-import { Providers } from "./providers/page";
+import './globals.css'
 
- 
+
+import { Providers } from "./providers/page";
 export const metadata = {
   title: 'Zion Vitenge',
   description: 'The official Zion Website',
 };
-
 
 export default function RootLayout({
   children,
