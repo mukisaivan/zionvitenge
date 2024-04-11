@@ -2,7 +2,7 @@ import React from 'react'
 import Image from "next/image";
 
 
-export default function Logo() {
+export default function ZionLogo() {
   return (
     <header className='sticky top-0'>
       <Image
@@ -12,12 +12,11 @@ export default function Logo() {
         height={37}
         priority
       />
-  
     </header>
   )
 }
 
-
+/*
 export function Somecomponent() {
   
   const names = [
@@ -36,3 +35,5 @@ export function Somecomponent() {
   console.log(derivedmap);
   
 }
+
+*/

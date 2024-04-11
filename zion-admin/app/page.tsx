@@ -1,64 +1,58 @@
 "use client" 
 
-import { useSession, signIn, signOut } from "next-auth/react"
-import Image from "next/image"
-import Link from "next/link"
+import { useSession, signIn } from "next-auth/react"
+import { useState } from "react";
+import Nav from "./components/Nav";
+import ZionLogo from "@/lib/ZionLogo";
+import { useRouter } from "next/navigation";
 
-const signinbutton = (
-  <div className="bg bg-slate-400 h-screen flex justify-center items-center">
-    <div className='w-full text-center'>
-      <button className='bg-white rounded-lg px-2 text-center text-red-500' onClick={() => signIn('google')}>
-        Sign In with Google
-      </button>
-    </div>
-  </div>
-)
-const signoutbutton = (
-  <div className="flex justify-center items-center ml-6">
-    <div className='w-full text-center'>
-      <button className='bg-white rounded-lg px-2 text-center text-red-500' onClick={() => signOut()}>
-        Sign Out
-      </button>
-    </div>
-  </div>
-)
+export default function Home({children}: {children: React.ReactNode}) {
+  const [showNav, setShowNav] = useState(false);
+  const { data: session } = useSession();
+  const router = useRouter()
+  const navv = router.push('/home')
 
-export default function Home() {
-  const { data: session } = useSession()
 
+  /*
   if (!session) {
     return (
-      <>
-        {signinbutton}
-      </>
+      <div className="bg-bgGray w-screen h-screen flex items-center">
+        <div className="text-center w-full">
+          <button onClick={() => signIn('google')} className="bg-white p-2 px-4 rounded-lg text-red-800">Login with Google</button>
+        </div>
+      </div>
     )
   }
-
-  const butn = <button className=" bg-white text-red-600 rounded-lg">Move to  detail page</button>
-
+  */
+  
 
 
   return (
-    <main className=' items-center flex h-screen w-screen flex-col'>
-
-      {
-        session?.user?.image && <img src={session?.user?.image} alt="Image" height={400} width={400}/>
-      }
-
-      <p className='text-red-400 ml-4 '>
-        Hello
-        <b className=' text-pink-500'>
-          {session.user?.name}
-        </b>
-      </p>
-
-      {signoutbutton}
-      
-      <Link href={"/detailpage"} className=" rounded-lg mt-3">
-        {butn}
-      </Link>
-
-    </main>
+    <>
+      {navv}
+    </>
+  
+    // <div className="bg-bgGray min-h-screen">
+    // <div className="md:hidden flex items-center p-4">
+    // <button onClick={() => setShowNav(true)}>
+    // <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+    // <path fillRule="evenodd" d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z" clipRule="evenodd" />
+    // </svg>
+    // </button>
+    // <div className="flex grow justify-center mr-6">
+    // {/* <ZionLogo /> */}
+    // </div>
+    // </div>
+    // <div className="flex">
+    //     <>
+    //       <button className="bg-black rounded-xl p-4" onClick={() => {router.push('/home')}}>
+    //         Move to possible home screen 
+    //       </button>
+    //     </>
+    //     {/* <Nav show={showNav} /> */}
+    //    {children}
+    //   </div>
+    // </div>
   );
 }
 

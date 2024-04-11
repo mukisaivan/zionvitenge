@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.tsx", "app/page.js", "app/api/auth/[...nextauth].jsx", "lib/mongodb.js", "lib/mongodb.jsx", "app/api/auth/[...nextauth]/route.js", "lib/auth.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.tsx", "app/page.js", "app/api/auth/[...nextauth].jsx", "lib/mongodb.js", "lib/mongodb.jsx", "app/api/auth/[...nextauth]/route.js", "lib/auth.js", "app/layout.jsx", "lib/ZionLogo.tsx", "app/home/layout.jsx"],
   "exclude": ["node_modules"]
 }
