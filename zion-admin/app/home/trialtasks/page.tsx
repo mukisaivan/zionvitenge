@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import CommentsList from "./components/CommentsList";
 
 export default function TrialTask({ children }: { children: React.ReactNode }) {
   const [name, setName] = useState("");

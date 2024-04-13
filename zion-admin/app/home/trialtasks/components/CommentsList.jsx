@@ -1,4 +1,4 @@
-import EditandDeleteButtons from './EditandDeleteButtons'
+import  { DeleteButton, EditButton } from './EditandDeleteButtons'
 
 import React from "react";
 
@@ -38,8 +38,11 @@ export default async  function CommentsList() {
             </div>
             <div>
               {com.content}
-          </div>
-          <EditandDeleteButtons/>
+           </div>
+           <div className='flex space-x-3'>  
+            <DeleteButton id={com._id} />
+            <EditButton id={com._id}/>
+           </div>
 
         </div>
           </div>
