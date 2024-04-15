@@ -14,7 +14,8 @@ const getCommentbyId = async (id) => {
    // return res.json();
    
     const data = await res.json();
-    console.log("Response data:", data); 
+   console.log("Response data:", data); 
+   return data
 
   } catch (error) {
     console.log(error);
