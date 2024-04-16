@@ -2,7 +2,8 @@ import React from 'react'
 import EditCommentForm from '../EditCommentForm';
 
 const getCommentbyId = async (id) => {
- try {
+  try {
+   console.log('getttttttt');
     const res = await fetch(`http://localhost:3000/api/comments/${id}`, {
       cache: "no-store",
      });
@@ -10,12 +11,8 @@ const getCommentbyId = async (id) => {
     if (!res.ok) {
       throw new Error("Failed to fetch topic");
     }
-
-   // return res.json();
-   
-    const data = await res.json();
-   console.log("Response data:", data); 
-   return data
+    console.log("Response data:", data); 
+    return res.json();
 
   } catch (error) {
     console.log(error);
@@ -25,11 +22,8 @@ const getCommentbyId = async (id) => {
 export default async  function EditComment({ params }) {
 
   const { id } = params
-  
-  const { comment } = await getCommentbyId(id) 
-  
+  const { comment } = await getCommentbyId(id)   
   const {name, email , content }= comment
-  
   return (
     <EditCommentForm id={id} name={name} email={email} content={content}/>
   )

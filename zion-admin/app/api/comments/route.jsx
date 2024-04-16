@@ -9,7 +9,7 @@ export async function GET() {
   return NextResponse.json ({ comments })
 
 }
-export async function POST(request: Request) {
+export async function POST(request) {
   await connectMongoDB();
 
   const { name, email,  content } = await request.json()
@@ -20,3 +20,10 @@ export async function POST(request: Request) {
 
 }
 
+export async function DELETE(request) {
+  const id = request.url. nextUrl.searchParams.get("id");
+  await connectMongoDB()
+  const commentToBeDeleted = await Commente.findOne({ _id: id })
+  return NextResponse.json({ commentToBeDeleted }, { status: 200 })
+
+}

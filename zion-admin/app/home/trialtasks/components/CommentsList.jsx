@@ -1,6 +1,8 @@
 import  { DeleteButton, EditButton } from './EditandDeleteButtons'
+import {HiPencilAlt} from  'react-icons/hi';
 
 import React from "react";
+import Link from 'next/link';
 
 const getComments = async () => {
     console.log('fetching comments');  
@@ -41,7 +43,11 @@ export default async  function CommentsList() {
            </div>
            <div className='flex space-x-3'>  
             <DeleteButton id={com._id} />
-            <EditButton id={com._id}/>
+             {/* <EditButton id={com._id}/> */}
+              <Link href={`./editComment/${com._id}`}>
+                <HiPencilAlt size={24} />
+              </Link>
+             
            </div>
 
         </div>
