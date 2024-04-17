@@ -1,4 +1,4 @@
-import  { DeleteButton, EditButton } from './EditandDeleteButtons'
+import  { DeleteButton } from './DeleteButton'
 import {HiPencilAlt} from  'react-icons/hi';
 
 import React from "react";

@@ -20,11 +20,13 @@ const getCommentbyId = async (id) => {
 };
 
 export default async  function EditComment({ params }) {
-
   const { id } = params
   const { comment } = await getCommentbyId(id)   
-  const {name, email , content }= comment
+  // const {name, email , content }= comment
   return (
-    <EditCommentForm id={id} name={name} email={email} content={content}/>
+    <>
+      {id}
+      {/* <EditCommentForm id={id} name={name} email={email} content={content}/> */}
+    </>
   )
 }

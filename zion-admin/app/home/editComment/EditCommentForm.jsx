@@ -15,7 +15,7 @@ export default function EditCommentForm({ id, name, email, content }) {
         headers: {
           "Content-type": "application/json",
         },            
-        body: JSON.stringify({ name , email, newcontent }),
+        body: JSON.stringify({ newname , newemail, newcontent }),
       });
 
       if (!res.ok) {
