@@ -4,19 +4,27 @@ import { useRouter } from "next/navigation";
 export function DeleteButton({ id }) {
   const router = useRouter();
   async function handleDelete() {
-    if (confirm("Are you sure you want to delete this comment?")) {
-      try {
-        const res = await fetch(`/api/comments/${id}`, {
-          method: "DELETE",
-        });
-        if (res.ok) {
-          router.reload();
-        } else {
-          console.error("Error deleting comment 111:", await res.text());
-        }
-      } catch (err) {
-        console.error("Error deleting comment 222:", err);
+
+    console.log('handling the delete');
+
+    try {
+      const res = await fetch(`http://localhost:3000/api/comments?id=${id}`, {
+        method: "DELETE",
+      });
+
+      const data = await res.json()
+      
+      console.log(`-------------  the id:${id}`);
+
+      console.log('______________the log', data);
+      console.log(`+++++++++++++++++ data log, ${data}`);
+
+      if (res.ok) {
+        router.refresh();
+        console.log('response is fine ');
       }
+    } catch (err) {
+      console.error("Error deleting comment 222:", err);
     }
   }
 

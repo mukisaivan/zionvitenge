@@ -1,14 +1,20 @@
 "use client"
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+
 
 
 export default function EditCommentForm({ id, name, email, content }) {
 
   const [newcontent, setNewContent] = useState(content)
+  const router = useRouter();
 
+  const {newname, newemail} = {name, email}
 
-  async function handleEdit() {
+  async function handleEdit(e) {
+    e.preventDefault();
+
     try {
       const res = await fetch(`http://localhost:3000/api/comments/${id}`, {
         method: "PUT",
@@ -21,8 +27,12 @@ export default function EditCommentForm({ id, name, email, content }) {
       if (!res.ok) {
         throw new Error("Failed to fetch topic");
       }
+      router.refresh();
+      router.push("/home/trialtasks");
+      router.refresh();
 
-      return res.json();
+
+
     } catch (error) {
       console.log(error);
     }
@@ -31,8 +41,7 @@ export default function EditCommentForm({ id, name, email, content }) {
 
   return (
     <form onSubmit={handleEdit}>
-      <p>{id}</p>
-      <label htmlFor="" className="font-bold">
+      <label  className="font-bold">
         Your Name:
       </label>
       <input
@@ -42,7 +51,7 @@ export default function EditCommentForm({ id, name, email, content }) {
         value={name}
       />
 
-      <label htmlFor="" className="font-bold">
+      <label className="font-bold">
         Email:
       </label>
       <input
@@ -52,7 +61,7 @@ export default function EditCommentForm({ id, name, email, content }) {
         value={email}
       />
 
-      <label htmlFor="" className="font-bold">
+      <label className="font-bold">
         Content:
       </label>
       <input

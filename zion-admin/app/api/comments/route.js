@@ -20,24 +20,16 @@ export async function POST(request) {
 
 
 export async function DELETE(req) {
-    const { id } = req.query;
+
+    console.log('something is happening in the general route');
+
+    // console.log('req', req);
+
+    const id = req.nextUrl.searchParams.get("id");
+
+    console.log('+++++++++++++++++_-------  id from the server ', id);
+
     await connectMongoDB();
     await Commente.findByIdAndDelete(id);
     return NextResponse.json({ message: "Comment deleted" }, { status: 200 });
 }
-
-
-// export default async function handler(req, res) {
-//     const { id } = req.query; // Access the ID from URL query params
-//     try {
-//         if (req.method === 'DELETE') {
-//             await connectMongoDB();
-//             await Commente.findByIdAndDelete(id);
-//             res.status(200).json({ message: "Comment deleted" });
-//         } else {
-//             res.status(405).json({ message: "Method not allowed" });
-//         }
-//     } catch (err) {
-//         res.status(500).json({ message: "Error deleting comment" });
-//     }
-// }
