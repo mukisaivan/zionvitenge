@@ -7,9 +7,39 @@ export const metadata = {
 
 };
 
+
+
+
+
+
+
+
+
+
 export default function RootLayout({
   children,
-}) {
+}: {children: React.ReactNode}) {
+
+
+  return (
+    <html lang="en">
+      <body className="min-h-screen overflow-x-hidden flex">
+        <Providers>
+            <div className="flex">
+              <div className=" bg-blue-950 w-screen min-h-screen">
+                {children}
+              </div>
+            </div>
+          </Providers>
+      </body>
+    </html>
+  );
+}
+
+
+export  function RootLayouto({
+  children,
+}: {children: React.ReactNode}) {
 
 
   return (
