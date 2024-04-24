@@ -1,27 +1,28 @@
 import './globals.css'
+import {Poppins} from "next/font/google"
 
-import { Providers } from "./providers/page";
 export const metadata = {
   title: 'Zion Vitenge',
   description: 'The official Zion Website',
 };
 
+
+const poppins = Poppins({subsets: ['latin'], weight:['400', '800'], style:'italic'})
+
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en">
-      <body className="min-h-screen overflow-x-hidden flex">
+      <body className={poppins.className}>
         {children}
       </body>
     </html>
   );
 }
 
-
+/*
 export  function RootLayouto({
   children,
 }: {children: React.ReactNode}) {
-
-
   return (
     <html lang="en">
       <body className="min-h-screen overflow-x-hidden flex">
@@ -36,7 +37,7 @@ export  function RootLayouto({
     </html>
   );
 }
-
+*/
 
 
 
