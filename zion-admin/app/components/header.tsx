@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Header() {
   return (
-    <div>Header</div>
+    <div className='bg-slate-500'>Header</div>
   )
 }
