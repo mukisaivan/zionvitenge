@@ -21,13 +21,13 @@ export async function POST(request) {
 
 export async function DELETE(req) {
 
-    console.log('something is happening in the general route');
-
+    console.log('delete req is being worked upon in the general route');
     // console.log('req', req);
 
     const id = req.nextUrl.searchParams.get("id");
 
-    console.log('+++++++++++++++++_-------  id from the server ', id);
+
+    console.log('-------  id from the server ', id);
 
     await connectMongoDB();
     await Commente.findByIdAndDelete(id);

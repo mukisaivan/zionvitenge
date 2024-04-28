@@ -25,6 +25,7 @@ const getCommentbyId = async (id) => {
 export default async  function EditComment({ params }) {
   const { id } = params
   console.log(`______________________ ${JSON.stringify(params.id)} _________________`);
+
   const { comment } = await getCommentbyId(id)   
   await getCommentbyId(id)   
   const {name, email , content }= comment

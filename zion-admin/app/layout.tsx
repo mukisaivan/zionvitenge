@@ -2,6 +2,7 @@ import Footer from './components/footer';
 import Header from './components/header';
 import './globals.css'
 import {Poppins} from "next/font/google"
+import { Providers } from './providers/page';
 
 export const metadata = {
   title: 'Zion Vitenge',
@@ -11,7 +12,24 @@ export const metadata = {
 
 const poppins = Poppins({subsets: ['latin'], weight:['400', '800'], style:'italic'})
 
+
+//for javascript 
 export default function RootLayout({children}: {children: React.ReactNode}) {
+  return (
+    <html lang="en">
+      <body className=' overflow-x-hidden flex min-h-screen'>
+        <Providers>
+          <div className='flex' >
+            <div className='min-h-screen w-screen'>
+              {children}
+            </div>
+            </div>
+        </Providers>
+      </body>
+    </html>
+  );
+}
+export  function RootLayoutO({children}: {children: React.ReactNode}) {
   return (
     <html lang="en">
       <body className={poppins.className}>
@@ -26,6 +44,9 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
     </html>
   );
 }
+
+
+
 
 
 

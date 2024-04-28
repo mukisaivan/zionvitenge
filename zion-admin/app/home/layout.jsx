@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
       </div>
       <div className="flex flex-row gap-0">
         <Nav show={showNav} />
-        <div className=" p-5 bg-white rounded-xl min-h-screen text-red-600 w-screen mr-8 mt-5 mb-5 ">
+        <div className=" p-5 bg-white rounded-xl min-h-screen text-red-600 w-screen mr-8 mt-5 mb-5">
           {children}
         </div>
       </div>

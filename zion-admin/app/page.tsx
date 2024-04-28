@@ -1,6 +1,6 @@
 "use client" 
 import { useRouter } from "next/navigation";
-export function Home() {
+export default function Home() {
   const router = useRouter()
   const navv = router.push('/home')
   return (
@@ -12,7 +12,7 @@ export function Home() {
 
 import React from 'react'
 
-export default function MainPage() {
+export  function MainPage() {
   return (
     <main>
       write something

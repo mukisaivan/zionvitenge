@@ -38,7 +38,9 @@ export default function TrialTask({ children }: { children: React.ReactNode }) {
   }
 
   const submissionform = (
-    <form onSubmit={handleSubmit}>
+    <form
+      className="flex flex-col space-y-4"
+      onSubmit={handleSubmit}>
       <label htmlFor="" className="font-bold">
         Your Name:
       </label>
@@ -72,7 +74,7 @@ export default function TrialTask({ children }: { children: React.ReactNode }) {
         value={content}
       />
 
-      <button type="submit" className="bg-black text-white p-3 rounded-xl">
+      <button type="submit" className="bg-black text-white p-3 rounded-xl inline-flex px-3 justify-center mx-auto">
         Submit Comment
       </button>
     </form>
