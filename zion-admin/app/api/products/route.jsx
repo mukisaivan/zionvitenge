@@ -1,3 +1,5 @@
-export default function handler() {
-  
+export default function handler(req, res) {
+  if (req == 'POST') {
+    //do something
+  }
 }
