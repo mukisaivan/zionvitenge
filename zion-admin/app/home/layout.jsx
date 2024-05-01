@@ -7,26 +7,31 @@ import { useSession, signIn } from "next-auth/react";
 export default function RootLayout({ children }) {
   const [showNav, setShowNav] = useState(false);
 
-  const { data: session } = useSession();
-  if (!session) {
-    return (
-      <div className="bg-bgGray w-screen h-screen flex items-center">
-        <div className="text-center w-full">
-          <button
-            onClick={() => signIn("google")}
-            className="bg-white p-2 px-4 rounded-lg text-red-800"
-          >
-            Login with Google
-          </button>
-        </div>
-      </div>
-    );
+
+  function toggleNavBar() {
+    setShowNav(prev => !prev)
   }
+
+  // const { data: session } = useSession();
+  // if (!session) {
+  //   return (
+  //     <div className="bg-bgGray w-screen h-screen flex items-center">
+  //       <div className="text-center w-full">
+  //         <button
+  //           onClick={() => signIn("google")}
+  //           className="bg-white p-2 px-4 rounded-lg text-red-800"
+  //         >
+  //           Login with Google
+  //         </button>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="bg-bgGray min-h-screen ">
       <div className=" md:hidden flex items-center p-4">
-        <button onClick={() => setShowNav(true)}>
+        <button onClick={toggleNavBar}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

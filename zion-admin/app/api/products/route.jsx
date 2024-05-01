@@ -1,37 +1,23 @@
-import {Product} from "@/models/Product";
-import {mongooseConnect} from "@/lib/mongoose";
 
-export default async function handle(req, res) {
-  const {method} = req;
-  await mongooseConnect();
-  await isAdminRequest(req,res);
+import { mongooseConnect } from "@/lib/mongoose";
+import { NextResponse } from 'next/server';
+import connectMongoDB from '@/lib/mongodd';
 
-  if (method === 'GET') {
-    if (req.query?.id) {
-      res.json(await Product.findOne({_id:req.query.id}));
-    } else {
-      res.json(await Product.find());
-    }
-  }
+import Product from "../../../models/Product";
 
-  if (method === 'POST') {
-    const {title,description,price,images,category,properties} = req.body;
-    const productDoc = await Product.create({
-      title,description,price,images,category,properties,
-    })
-    res.json(productDoc);
-  }
 
-  if (method === 'PUT') {
-    const {title,description,price,images,category,properties,_id} = req.body;
-    await Product.updateOne({_id}, {title,description,price,images,category,properties});
-    res.json(true);
-  }
+export async function POST(req) {
+  console.log("the whole req  is:******************", req)
 
-  if (method === 'DELETE') {
-    if (req.query?.id) {
-      await Product.deleteOne({_id:req.query?.id});
-      res.json(true);
-    }
-  }
+  const responsedata = await req.json()
+
+
+  mongooseConnect()
+  const { title, description, price } = responsedata;
+
+  const prod = await Product.create({title, description, price})
+
+  console.log("+++++++++++++++++++++++++++",prod);
+  
+  return NextResponse.json({prod})
 }
