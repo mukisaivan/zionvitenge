@@ -23,9 +23,6 @@ export default function ProductForm({
 
 
     try {
-    
-      console.log("________________response1",);
-    
     ev.preventDefault();
     const data = {
       title,
