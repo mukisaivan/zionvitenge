@@ -1,7 +1,6 @@
 
 import { mongooseConnect } from "@/lib/mongoose";
 import { NextResponse } from 'next/server';
-import connectMongoDB from '@/lib/mongodd';
 
 import Product from "../../../models/Product";
 
