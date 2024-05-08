@@ -20,3 +20,10 @@ export async function POST(req) {
   
   return NextResponse.json({prod})
 }
+
+
+export async function GET() {
+  mongooseConnect()
+  const res = await Product.find()
+  return NextResponse.json({res})
+}

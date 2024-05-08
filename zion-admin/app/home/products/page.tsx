@@ -1,6 +1,6 @@
 import React from 'react'
-import Availableproducts from './components/availableproducts'
 import Link from 'next/link'
+import Availableproducts from './components/availableproducts'
 
 export default function products() {
   return (
