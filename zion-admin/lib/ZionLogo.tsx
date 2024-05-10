@@ -9,7 +9,7 @@ export default function ZionLogo() {
         src="/logo.png"
         alt="Logo"
         width={180}
-        height={37}
+        height={20}
         priority
       />
     </header>
