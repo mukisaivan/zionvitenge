@@ -9,8 +9,6 @@ export async function POST(req) {
   console.log("the whole req  is:******************", req)
 
   const responsedata = await req.json()
-
-
   mongooseConnect()
   const { title, description, price } = responsedata;
 
@@ -26,4 +24,13 @@ export async function GET() {
   await mongooseConnect()
   const res = await Product.find()
   return NextResponse.json({res})
+}
+
+export async function DELETE(req) {
+  const breq = req.nextUrl.searchParams.get('id')
+  console.log(breq);
+  await mongooseConnect()
+  await Product.findByIdAndDelete(breq)
+  return NextResponse.json({message: 'deleted', status:200})
+  
 }

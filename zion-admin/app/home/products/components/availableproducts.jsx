@@ -1,5 +1,7 @@
 
 import React from "react";
+import DeletePdt from './DeletePdt'
+import EditPdt from './EditPdt'
 
 async function getavailableproducts() {
   console.log("trying to get products");
@@ -66,15 +68,27 @@ export default async function Availableproducts() {
           <th className="border-red-400 border">title</th>
           <th className="border-red-400 border">description</th>
           <th className=" border-red-400 border">price</th>
+          <th className=" border-red-400 border">Operations</th>
         </tr>
       </thead>
       <tbody>
         {
           gotproducts?.map(p => (
             <tr key={p._id}>
-              <td className=" border-red-400 border">{p.title}</td>
-              <td className=" border-red-400 border">{p.description}</td>
-              <td className=" border-red-400 border">{p.price}</td>
+              <td className=" border-red-400 border">
+
+                  <div className="flex justify-center items-center font-bold">
+                    {p.title}
+                  </div>
+              </td>
+              <td className=" border-red-400 border pl-2">{p.description}</td>
+              <td className=" border-red-400 border pl-2">{p.price}</td>
+              <td className="  border-red-400 border flex justify-center items-center">
+                  <td className="flex flex-row gap-5 p-4">
+                      <DeletePdt  id = {p._id} />
+                      <EditPdt id = {p._id}/>
+                    </td> 
+              </td>
             </tr>
           ))
         }
