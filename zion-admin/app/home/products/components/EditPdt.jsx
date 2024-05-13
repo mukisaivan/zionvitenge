@@ -1,9 +1,13 @@
 import React from 'react'
 
-function EditPdt() {
+function EditPdt({ id }) {
+  
+  async function handleedit() {
+
+  }
 
   const editbtn = (
-    <button type="button" className=' bg-blue-700  px-5 p-1 text-white rounded-lg'>Edit</button>
+    <button type="button" onClick={handleedit} className=' bg-blue-700  px-5 p-1 text-white rounded-lg'>Edit</button>
   ) 
 
   return (
