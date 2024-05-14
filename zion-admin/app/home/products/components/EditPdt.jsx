@@ -3,6 +3,21 @@ import React from 'react'
 function EditPdt({ id }) {
   
   async function handleedit() {
+    try {
+      const res = fetch('http://localhost:3000', {
+      headers: {
+
+      },
+      body: {}  
+      
+    })
+  
+    } catch (error) {
+      console.log('+++++++++++++++++++++++++ error', error);      
+    }
+    
+    
+
 
   }
 
