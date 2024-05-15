@@ -1,7 +1,15 @@
-import { json } from "node:stream/consumers";
 import React from "react";
+import { useRouter } from "next/navigation";
+
 
 function EditPdt({ id }) {
+
+  const router = useRouter()
+
+  function movetoeditpage() {
+    router.push(`/home/edit/${id}`)
+  }
+
   async function handleedit() {
     try {
       const res = fetch(`http://localhost:3000/api/products/${id}`, {
