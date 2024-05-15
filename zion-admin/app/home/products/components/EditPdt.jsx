@@ -21,6 +21,8 @@ function EditPdt({ id }) {
     } catch (error) {
       console.log("+++++++++++++++++++++++++ error", error);
     }
+
+    
   }
 
   const editbtn = (
