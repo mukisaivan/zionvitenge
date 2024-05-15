@@ -29,9 +29,7 @@ export default function EditCommentForm({ id, name, email, content }) {
       }
       router.refresh();
       router.push("/home/trialtasks");
-      router.refresh();
-
-
+      router.refresh()
 
     } catch (error) {
       console.log(error);
