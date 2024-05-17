@@ -26,20 +26,20 @@ export default function RootLayout({ children }) {
   console.log(isMobile);
 
   const { data: session } = useSession();
-  if (!session) {
-    return (
-      <div className="bg-bgGray w-screen h-screen flex items-center">
-        <div className="text-center w-full">
-          <button
-            onClick={() => signIn("google")}
-            className="bg-white p-2 px-4 rounded-lg text-red-800"
-          >
-            Login with Google
-          </button>
-        </div>
-      </div>
-    );
-  }
+  // if (!session) {
+  //   return (
+  //     <div className="bg-bgGray w-screen h-screen flex items-center">
+  //       <div className="text-center w-full">
+  //         <button
+  //           onClick={() => signIn("google")}
+  //           className="bg-white p-2 px-4 rounded-lg text-red-800"
+  //         >
+  //           Login with Google
+  //         </button>
+  //       </div>
+  //     </div>
+  //   );
+  // }
   return (
     <div className="min-h-screen ">
       <div className={isMobile ? 'flex flex-column gap-0' : 'flex flex-row gap-0'}>
