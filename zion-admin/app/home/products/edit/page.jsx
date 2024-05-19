@@ -1,4 +1,6 @@
 import ProductForm from '@/app/components/ProductForm'
+import ProductForm from '../../../components/ProductForm'
+
 import React from 'react'
 
 function EditPage() {
@@ -29,8 +31,8 @@ function EditPage() {
   return (
     <>
       <h1>Edit Product Page</h1>
+      <ProductForm/>
     </>
-    // <ProductForm/>
   )
 }
 
