@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import ProductForm from "@/components/ProductForm";
 
-export default function EditProductPage() {
+export default function EditProductPage(id) {
   const [productInfo, setProductInfo] = useState(null);
   const router = useRouter();
   const {id} = router.query;
@@ -18,10 +18,11 @@ export default function EditProductPage() {
   }, [id]);
   return (
     <Layout>
-      <h1>Edit product</h1>
+      {/* <h1>Edit product</h1>
       {productInfo && (
         <ProductForm {...productInfo} />
-      )}
+      )} */}
+      <h1>edit page</h1>
     </Layout>
   );
 }

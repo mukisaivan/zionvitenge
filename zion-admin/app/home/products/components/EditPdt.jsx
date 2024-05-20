@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 import { useRouter } from "next/navigation";
 
@@ -7,7 +9,7 @@ function EditPdt({ id }) {
   const router = useRouter()
 
   function movetoeditpage() {
-    router.push(`/home/edit/${id}`)
+    router.push(`./edit/${id}`)
   }
 
   const editbtn = (
