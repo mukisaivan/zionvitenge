@@ -18,6 +18,9 @@ export default function ProductForm({
   const [isUploading,setIsUploading] = useState(false);
   const [images,setImages] = useState(existingImages || []);
 
+  const [category,setCategory] = useState('');
+  const [categories,setCategories] = useState([]);
+
  
   const [goToProducts, setGoToProducts] = useState(false);
   const router = useRouter();
@@ -82,6 +85,14 @@ export default function ProductForm({
         value={title}
         onChange={(ev) => setTitle(ev.target.value)}
       />
+      <label>Category</label>
+        <select value={category}
+                onChange={ev => setCategory(ev.target.value)}>
+          <option value="">Uncategorized</option>
+          {categories.length > 0 && categories.map(c => (
+            <option key={c._id} value={c._id}>{c.name}</option>
+          ))}
+        </select>
       <label>
         Photos
       </label>
