@@ -31,6 +31,15 @@ export default function ProductForm({
     setImages(images);
   }
 
+  function setProductProp(propName,value) {
+    setProductProperties(prev => {
+      const newProductProps = {...prev};
+      newProductProps[propName] = value;
+      return newProductProps;
+    });
+  }
+
+
     async function uploadImages(ev) {
     const files = ev.target?.files;
     if (files?.length > 0) {
@@ -49,8 +58,6 @@ export default function ProductForm({
 
 
   async function saveProduct(ev) {
-
-
     try {
     ev.preventDefault();
     const data = {
