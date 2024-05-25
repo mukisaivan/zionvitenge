@@ -2,25 +2,26 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import Link from 'next/link';
 
 
 function EditPdt({ id }) {
 
   const router = useRouter()
 
-  function movetoeditpage() {
-    router.push(`./products/edit/${id}`)
+
+  function click() {
+    console.log('clickkkkked');
   }
 
   const editbtn = (
       <button
         type="button"
-        onClick={movetoeditpage}
-        className=" bg-blue-700  px-5 p-1 text-white rounded-lg"
-      >
-        Edit
-      </button>
+        onClick={click()}
+          className=" bg-blue-700  px-5 p-1 text-white rounded-lg"
+        >
+        Edit    
+        </button>
   );
 
   return <>{editbtn}</>;
