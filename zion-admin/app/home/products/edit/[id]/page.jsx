@@ -1,14 +1,17 @@
+'use client'
+
+export default function EditProductPage(content) {
+
+  // const id = content.params.id;
+  
+  const {params: {id}} = content
 
 
-export default function EditProductPage({id}) {
-
-
- console.log('the id ++++++++++++',id);
+  
   return (
     <>
-      <h1>{id}</h1>
+      <h1>Trying to edit product: {id}</h1>
      
     </>
   );
 }
-
