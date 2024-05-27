@@ -1,9 +1,12 @@
 'use client'
 
 import React from 'react'
+import { useRouter } from "next/navigation";
+
 
  function DeletePdt({ id }) {
   
+   const router = useRouter()
 
    async function handleDelete() {
     console.log('hey');
@@ -14,6 +17,7 @@ import React from 'react'
     const res1 = await res
 
     console.log('-----delete respose', res1);
+    router.refresh()
 
 
   }

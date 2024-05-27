@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState} from "react";
 
 export default function Nav({ screenwidth }) {
-  const inactiveLink = "flex gap-1 p-2";
+  const inactiveLink = "flex gap-1 p-2 hover:rounded-l-lg hover:bg-white hover:text-white-950";
   const activeLink =
     inactiveLink + "rounded-l-lg bg-white text-blue-950 p-4 rounded-l-xl g-4";
   const activeLinkh =
@@ -30,7 +30,7 @@ export default function Nav({ screenwidth }) {
     <>
       <div
         className={
-          "top-0 text-gray-500 fixed w-full h-full md:static md:w-auto transition-all"
+          "top-0 text-gray-500 fixed w-full h-full md:static md:w-auto transition-all z-100"
         }
       >
         <nav className={"flex flex-row bg-black text-white"}>
@@ -191,7 +191,7 @@ export default function Nav({ screenwidth }) {
                 onClick={() => handleclick("/home/trialtasks")}
                 href={"/home/trialtasks"}
                 className={
-                  activePath === "/home/trialtasks" ? activeLinkh : inactiveLink
+                  activePath === "/home/trialtasks" ? activeLinkh : inactiveLink 
                 }
               >
                 <svg
@@ -212,7 +212,7 @@ export default function Nav({ screenwidth }) {
               </Link>
               <button
                 onClick={() => signOut()}
-                className="rounded-l-lg hover:bg-white text-white-950 p-4 flex g-4"
+                className="rounded-l-lg hover:bg-white text-white-950 p-2 flex g-4"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
