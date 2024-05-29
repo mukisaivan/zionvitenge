@@ -6,7 +6,7 @@ import { useSession, signIn } from "next-auth/react";
 
 export default function RootLayout({ children }) {
 
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [screenWidth, setScreenWidth] = useState(0);
 
   // Function to handle resizing
   const handleResize = () => {
@@ -14,6 +14,9 @@ export default function RootLayout({ children }) {
   };
 
   useEffect(() => {
+
+    handleResize()
+
     window.addEventListener("resize", handleResize);
 
     return () => {

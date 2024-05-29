@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import Spinner from "../components/Spinner";
 import { ReactSortable } from "react-sortablejs";
+// import { uploadFile } from "../home/products/components/upload";
+import { useRef } from "react";
 
 export default function ProductForm({
   _id,
@@ -36,17 +38,43 @@ export default function ProductForm({
   async function uploadImages(ev) {
     const files = ev.target?.files;
     if (files?.length > 0) {
-      setIsUploading(true);
+      // setIsUploading(true);
       const data = new FormData();
       for (const file of files) {
         data.append("file", file);
       }
-      const res = await axios.post("/api/upload", data);
-      setImages((oldImages) => {
-        return [...oldImages, ...res.data.links];
-      });
-      setIsUploading(false);
+      const res = await  axios.post("/api/upload", data);
+      console.log('----------------- CLient response ',res.data);
+      
     }
+  }
+
+
+  const fileInput = useRef(null);
+  async function uploadFile(evt) {
+    evt.preventDefault();
+    const files = fileInput.current.files;
+    if (!files.length) {
+      console.error('No files selected');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("files", fileInput?.current?.files);
+
+    try {
+      
+    const response = await fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+    });
+    const result = await response.json();
+    console.log(result);
+      
+    } catch (error) {
+      console.error('Error uploading files:', error.response ? error.response.data : error.message);
+    }
+
   }
 
   async function saveProduct(ev) {
@@ -93,7 +121,7 @@ export default function ProductForm({
             <div>
               Add image
             </div>
-            <input type="file" onChange={uploadImages} className="hidden"/>
+            <input type="file" ref={fileInput} onChange={uploadFile} className="hidden"/>
           </label>
 
       <label>Category</label>

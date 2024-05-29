@@ -30,13 +30,13 @@ export default   function EditProductPage({ params }) {
     });
   }, [id]);
   
-  if (!loading) {
-    console.log('Info of the product',JSON.stringify(productInfo));
-    console.log('Info of the product',productInfo);
-  }
+  // if (!loading) {
+  //   console.log('Info of the product',JSON.stringify(productInfo));
+  //   console.log('Info of the product',productInfo);
+  // }
 
   
-  if (!productInfo) {
+  if (loading) {
     return <div> Loading ......</div>;
   }
 

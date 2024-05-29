@@ -115,7 +115,7 @@ export default async function Availableproducts() {
   return (
     <>
       <div className=" font-bold mt-5  underline">Available Products</div>
-      <div class="h-5 m-4"></div>
+      <div className="h-5 m-4"></div>
       
       {resultswithtable}
     </>

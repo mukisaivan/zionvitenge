@@ -1,47 +1,73 @@
 import multiparty from 'multiparty';
 import {PutObjectCommand, S3Client} from '@aws-sdk/client-s3';
-import fs from 'fs';
+// import fs from 'fs';
 import mime from 'mime-types';
-import {mongooseConnect} from "@/lib/mongoose";
-import {isAdminRequest} from "@/pages/api/auth/[...nextauth]";
-const bucketName = 'dawid-next-ecommerce';
+import connectMongoDB from '@/lib/mongodd'
 
-export default async function handle(req,res) {
-  await mongooseConnect();
-  await isAdminRequest(req,res);
+// import {isAdminRequest} from "@/pages/api/auth/[...nextauth]";
+const bucketName = 'zion-vitenge';
+import { NextResponse } from 'next/server'
+import { revalidatePath } from "next/cache";
+import fs from "node:fs/promises";
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { initializeApp } from 'firebase/app';
 
-  const form = new multiparty.Form();
-  const {fields,files} = await new Promise((resolve,reject) => {
-    form.parse(req, (err, fields, files) => {
-      if (err) reject(err);
-      resolve({fields,files});
+
+// Firebase configuration (you can also import this from a separate config file)
+const firebaseConfig = {
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
+
+
+
+
+export async function POST(req) {
+
+  await connectMongoDB();
+  try {
+    const formData = await req.formData();
+    const file = formData.get("file");
+    const arrayBuffer = await file.arrayBuffer();
+    // const buffer = new Uint8Array(arrayBuffer);
+    // await fs.writeFile(`./public/uploads/${file.name}`, buffer);
+
+    const buffer = await fs.readFile(filePath);
+
+    // Create a reference to the Firebase Storage location
+    const storageRef = ref(storage, `uploads/${file.originalFilename}`);
+
+    // Upload the file
+    const snapshot = await uploadBytes(storageRef, buffer, {
+      contentType: mime.lookup(filePath) || 'application/octet-stream',
     });
-  });
-  console.log('length:', files.file.length);
-  const client = new S3Client({
-    region: 'us-east-1',
-    credentials: {
-      accessKeyId: process.env.S3_ACCESS_KEY,
-      secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
-    },
-  });
-  const links = [];
-  for (const file of files.file) {
-    const ext = file.originalFilename.split('.').pop();
-    const newFilename = Date.now() + '.' + ext;
-    await client.send(new PutObjectCommand({
-      Bucket: bucketName,
-      Key: newFilename,
-      Body: fs.readFileSync(file.path),
-      ACL: 'public-read',
-      ContentType: mime.lookup(file.path),
-    }));
-    const link = `https://${bucketName}.s3.amazonaws.com/${newFilename}`;
-    links.push(link);
+
+    // Get the download URL
+    const downloadURL = await getDownloadURL(snapshot.ref);
+
+    console.log('File available at', downloadURL);
+
+    revalidatePath("/");
+    console.log(file.name);
+
+  // return NextResponse.json({message: 'success photo recieved'});
+
+  return NextResponse.json({ message: 'File uploaded successfully', downloadURL });
+    
+
+
+
+  } catch (e) {
+    console.error(e);
+    return NextResponse.json({ message: 'An error occured on the server' });
   }
-  return res.json({links});
 }
 
-export const config = {
-  api: {bodyParser: false},
-};
