@@ -61,9 +61,6 @@ export async function POST(req) {
   // return NextResponse.json({message: 'success photo recieved'});
 
   return NextResponse.json({ message: 'File uploaded successfully', downloadURL });
-    
-
-
 
   } catch (e) {
     console.error(e);
