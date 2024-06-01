@@ -68,7 +68,6 @@ export async function POST(req) {
   }
 }
 
-
 export const config = {
   api: {bodyParser: false},
 };

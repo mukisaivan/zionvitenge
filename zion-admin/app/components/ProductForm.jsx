@@ -113,6 +113,16 @@ export default function ProductForm({
         value={title}
         onChange={(ev) => setTitle(ev.target.value)}
       />
+      <label>Category</label>
+      <select value={category} onChange={(ev) => setCategory(ev.target.value)}>
+        <option value="">Uncategorized</option>
+        {categories.length > 0 &&
+          categories.map((c) => (
+            <option key={c._id} value={c._id}>
+              {c.name}
+            </option>
+          ))}
+      </select>
       <label>Photos</label>
       <label className="w-24 h-24 cursor-pointer text-center flex flex-col items-center justify-center text-sm gap-1 text-primary rounded-sm bg-white shadow-sm border border-primary">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -124,16 +134,6 @@ export default function ProductForm({
             <input type="file" ref={fileInput} onChange={uploadFile} className="hidden"/>
           </label>
 
-      <label>Category</label>
-      <select value={category} onChange={(ev) => setCategory(ev.target.value)}>
-        <option value="">Uncategorized</option>
-        {categories.length > 0 &&
-          categories.map((c) => (
-            <option key={c._id} value={c._id}>
-              {c.name}
-            </option>
-          ))}
-      </select>
 
       <label>Description</label>
       <textarea
