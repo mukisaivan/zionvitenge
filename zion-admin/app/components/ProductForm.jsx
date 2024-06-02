@@ -17,12 +17,12 @@ export default function ProductForm({
   const [title, setTitle] = useState(existingTitle || "");
   const [description, setDescription] = useState(existingDescription || "");
   const [price, setPrice] = useState(existingPrice || "");
+  const [productProperties, setProductProperties] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
-
   const [category, setCategory] = useState("");
   const [categories, setCategories] = useState([]);
-
   const [goToProducts, setGoToProducts] = useState(false);
+  const [imageURLs, setImageURLs] = useState([]);
   const router = useRouter();
 
   const existingImages = [];
@@ -35,46 +35,40 @@ export default function ProductForm({
     });
   }
 
-  async function uploadImages(ev) {
-    const files = ev.target?.files;
-    if (files?.length > 0) {
-      // setIsUploading(true);
-      const data = new FormData();
-      for (const file of files) {
-        data.append("file", file);
-      }
-      const res = await  axios.post("/api/upload", data);
-      console.log('----------------- CLient response ',res.data);
-      
-    }
-  }
-
-
   const fileInput = useRef(null);
+
   async function uploadFile(evt) {
     evt.preventDefault();
     const files = fileInput.current.files;
     if (!files.length) {
-      console.error('No files selected');
+      console.error("No files selected");
       return;
     }
 
     const formData = new FormData();
-    formData.append("files", fileInput?.current?.files);
-
-    try {
-      
-    const response = await fetch("/api/upload", {
-      method: "POST",
-      body: formData,
-    });
-    const result = await response.json();
-    console.log(result);
-      
-    } catch (error) {
-      console.error('Error uploading files:', error.response ? error.response.data : error.message);
+    // formData.append("files", fileInput?.current?.files?.[0]);
+    if (fileInput.current?.files) {
+      for (const file of fileInput.current.files) {
+        formData.append("files", file);
+      }
     }
 
+    try {
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+      const result = await response.json();
+      if (result.downloadURLs) {
+        setImageURLs((prevURLs) => [...prevURLs, ...result.downloadURLs]);
+      }
+      console.log(result);
+    } catch (error) {
+      console.error(
+        "Error uploading files:",
+        error.response ? error.response.data : error.message
+      );
+    }
   }
 
   async function saveProduct(ev) {
@@ -100,7 +94,7 @@ export default function ProductForm({
 
   if (goToProducts) {
     router.push("/home/products");
-    router.refresh()
+    router.refresh();
   }
 
   return (
@@ -125,16 +119,41 @@ export default function ProductForm({
       </select>
       <label>Photos</label>
       <label className="w-24 h-24 cursor-pointer text-center flex flex-col items-center justify-center text-sm gap-1 text-primary rounded-sm bg-white shadow-sm border border-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-            </svg>
-            <div>
-              Add image
-            </div>
-            <input type="file" ref={fileInput} onChange={uploadFile} className="hidden"/>
-          </label>
-
-
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+          />
+        </svg>
+        <div>Add image</div>
+        <input
+          type="file"
+          ref={fileInput}
+          onChange={uploadFile}
+          multiple
+          className="hidden"
+        />
+      </label>
+      <div className="mt-4 max-h-48 overflow-y-auto">
+        <div className="grid grid-cols-3 gap-1">
+          {imageURLs.map((url, index) => (
+            <img
+              key={index}
+              src={url}
+              alt={`Uploaded file ${index + 1}`}
+              className="w-24 h-24 object-cover"
+            />
+          ))}
+        </div>
+      </div>
       <label>Description</label>
       <textarea
         required
