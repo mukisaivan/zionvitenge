@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.tsx", "app/page.js", "app/api/auth/[...nextauth].jsx", "lib/mongodd.jsx", "lib/mongodb.jsx", "app/api/auth/[...nextauth]/route.js", "lib/auth.js", "app/layout.tsx", "lib/ZionLogo.tsx", "app/home/layout.jsx", "app/api/comments/[id]/route.js", "app/home/editComment/[id]/page.jsx", "app/api/comments/route.js", "app/home/products/addproduct/page.jsx", "app/home/products/components/availableproducts.jsx", "app/home/products/edit/page.sx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.tsx", "app/page.js", "app/api/auth/[...nextauth].jsx", "lib/mongodd.jsx", "lib/mongodb.jsx", "app/api/auth/[...nextauth]/route.js", "lib/auth.js", "app/layout.tsx", "lib/ZionLogo.tsx", "app/home/layout.jsx", "app/api/comments/[id]/route.js", "app/home/editComment/[id]/page.jsx", "app/api/comments/route.js", "app/home/products/addproduct/page.jsx", "app/home/products/components/availableproducts.jsx", "app/home/products/edit/page.sx", "app/home/categories/page.jsx"],
   "exclude": ["node_modules"]
 }

@@ -132,7 +132,7 @@ export default function ProductForm({
         type="text"
         placeholder="product name"
         value={title}
-        onChange={(ev) => setTitle(ev.target.value)}
+         onChange={(ev) => setTitle(ev.target.value)}
       />
       <label>Category</label>
       <select value={category} onChange={(ev) => setCategory(ev.target.value)}>
