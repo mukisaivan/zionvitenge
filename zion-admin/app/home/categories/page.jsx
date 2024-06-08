@@ -1,4 +1,5 @@
-import Layout from "@/components/Layout";
+"use client"
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { withSwal } from 'react-sweetalert2';
@@ -94,7 +95,7 @@ function Categories({ swal }) {
     });
   }
   return (
-    <Layout>
+    <>
       <h1>Categories</h1>
       <label>
         {editedCategory
@@ -198,7 +199,7 @@ function Categories({ swal }) {
           </tbody>
         </table>
       )}
-    </Layout>
+    </>
   );
 }
 

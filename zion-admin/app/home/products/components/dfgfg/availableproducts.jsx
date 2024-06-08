@@ -62,29 +62,29 @@ export default async function Availableproducts() {
 
 
   const resultswithtable = (
-    <table >
+    <table className="border w-full border-collapse border-red-500">
       <thead>
         <tr>
-          <th>title</th>
-          <th>description</th>
-          <th >price</th>
-          <th>Operations</th>
+          <th className="border-red-400 border">title</th>
+          <th className="border-red-400 border">description</th>
+          <th className=" border-red-400 border">price</th>
+          <th className=" border-red-400 border">Operations</th>
         </tr>
       </thead>
       <tbody>
         {
           gotproducts?.map(p => (
             <tr key={p._id}>
-              <td >
+              <td className=" border-red-400 border">
 
                   <div className="flex justify-center items-center font-bold">
                     {p.title}
                   </div>
               </td>
-              <td>{p.description}</td>
-              <td>{p.price}</td>
-              <td >
-                  <td>
+              <td className=" border-red-400 border pl-2">{p.description}</td>
+              <td className=" border-red-400 border pl-2">{p.price}</td>
+              <td className="  border-red-400 border flex justify-center items-center">
+                  <td className="flex flex-row gap-5 p-4">
                       <DeletePdt  id = {p._id} />
                       <EditPdt id = {p._id}/>
                     </td> 
