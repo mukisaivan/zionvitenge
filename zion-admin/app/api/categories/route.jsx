@@ -7,8 +7,9 @@ import {Category} from "../../../models/Category";
 
 export async function GET() {
   await mongooseConnect();
-  NextResponse.json( await Category.find().populate('parent'));
+  return NextResponse.json( await Category.find().populate('parent'));
 }
+
 export async function POST(req) {
   const { name,parentCategory,properties } = req.body()
   const category = await Category.create({
@@ -17,7 +18,7 @@ export async function POST(req) {
     properties
   })
 
-  NextResponse.json({category})
+  return NextResponse.json({category})
 
 }
 export async function PUT(req) {
@@ -27,12 +28,12 @@ export async function PUT(req) {
       parent: parentCategory || undefined,
       properties,
     });
-    NextResponse.json(categoryDoc);
+   return NextResponse.json(categoryDoc);
 
 }
 export  async function DELETE(req) {
   const { _id } = req.query()
   await Category.deleteOne({ _id })
-  NextResponse.json('OK')
+ return NextResponse.json('OK')
 
 }

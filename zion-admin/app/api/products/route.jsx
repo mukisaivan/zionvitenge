@@ -31,6 +31,5 @@ export async function DELETE(req) {
   console.log(breq);
   await mongooseConnect()
   await Product.findByIdAndDelete(breq)
-  return NextResponse.json({message: 'deleted', status:200})
-  
+  return NextResponse.json({message: 'deleted', status:200}) 
 }
