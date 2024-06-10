@@ -19,9 +19,9 @@ export async function GET(params) {
 export async function PUT(res) {
   const data = await res.json()
   // console.log('-----------------------Response to be edited', data);
-  const { _id, title, description, price, images } = data
+  const { _id, title, description, price, images,category,properties } = data
   await connectMongoDB();
-  await Product.updateOne({ _id }, { title, description, price, images })
+  await Product.updateOne({ _id }, { title, description, price, images,category,properties })
   return NextResponse.json({ message: "Product updated" }, { status: 200 });
 
   

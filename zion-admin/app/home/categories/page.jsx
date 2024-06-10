@@ -73,6 +73,7 @@ function Categories({ swal }) {
       return [...prev, { name: '', values: '' }];
     });
   }
+
   function handlePropertyNameChange(index, property, newName) {
     setProperties(prev => {
       const properties = [...prev];
@@ -80,6 +81,7 @@ function Categories({ swal }) {
       return properties;
     });
   }
+
   function handlePropertyValuesChange(index, property, newValues) {
     setProperties(prev => {
       const properties = [...prev];
@@ -127,7 +129,7 @@ function Categories({ swal }) {
             Add new property
           </button>
           {properties.length > 0 && properties.map((property, index) => (
-            <div key={property.name} className="flex gap-1 mb-2">
+            <div key={property.id} className="flex gap-1 mb-2">
               <input type="text"
                 value={property.name}
                 className="mb-0"

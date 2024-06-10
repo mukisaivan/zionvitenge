@@ -11,7 +11,11 @@ export async function GET() {
 }
 
 export async function POST(req) {
-  const { name,parentCategory,properties } = req.body()
+  const data  = await req.json()
+  console.log('----------new req', data);
+  
+  const { name, parentCategory, properties } = data
+  console.log('---properties', properties);
   const category = await Category.create({
     name,
     parent: parentCategory || undefined,
@@ -19,10 +23,11 @@ export async function POST(req) {
   })
 
   return NextResponse.json({category})
+  // return NextResponse.json({message : 'OK'})
 
 }
 export async function PUT(req) {
-   const {name,parentCategory,properties,_id} = req.body();
+   const {name,parentCategory,properties,_id} = await  req.json();
     const categoryDoc = await Category.updateOne({_id},{
       name,
       parent: parentCategory || undefined,
@@ -32,8 +37,8 @@ export async function PUT(req) {
 
 }
 export  async function DELETE(req) {
-  const { _id } = req.query()
-  await Category.deleteOne({ _id })
+  const  idparam  =  req.nextUrl.searchParams.get('_id')
+  await Category.findByIdAndDelete(idparam)
  return NextResponse.json('OK')
 
 }

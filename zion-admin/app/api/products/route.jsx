@@ -10,9 +10,9 @@ export async function POST(req) {
 
   const responsedata = await req.json()
   mongooseConnect()
-  const { title, description, price, images } = responsedata;
+  const { title, description, price, images ,category,properties} = responsedata;
 
-  const prod = await Product.create({title, description, price, images})
+  const prod = await Product.create({title, description, price, images,category,properties})
 
   console.log("+++++++++++++++++++++++++++",prod);
   
