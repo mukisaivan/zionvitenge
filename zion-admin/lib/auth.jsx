@@ -12,7 +12,15 @@ export const authConfig = {
             clientSecret: process.env.GOOGLE_SECRET,
         }),
     ],
-    adapter: MongoDBAdapter(clientPromise)
+    adapter: MongoDBAdapter(clientPromise),callbacks: {
+    session: ({session,token,user}) => {
+      if (adminEmails.includes(session?.user?.email)) {
+        return session;
+      } else {
+        return false;
+      }
+    },
+  },
 };
 
 export async function loginIsRequiredServer() {
