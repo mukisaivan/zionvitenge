@@ -22,6 +22,11 @@ export default function Nav({ screenwidth }) {
     router.push(path);
   }
 
+   async function logout() {
+    router.push('/');
+    await signOut();
+  }
+
   const isMobile = screenwidth <= 768;
 
   console.log("Current screen width:", screenwidth);
@@ -211,7 +216,7 @@ export default function Nav({ screenwidth }) {
                 Trial tasks
               </Link>
               <button
-                onClick={() => signOut()}
+                onClick={logout}
                 className="rounded-l-lg hover:bg-white text-white-950 p-2 flex g-4"
               >
                 <svg
@@ -423,7 +428,7 @@ export default function Nav({ screenwidth }) {
                 Trial tasks
               </Link>
               <button
-                onClick={() => signOut()}
+                onClick={logout}
                 className="rounded-l-lg hover:bg-white text-white-950 p-4 flex g-4"
               >
                 <svg
