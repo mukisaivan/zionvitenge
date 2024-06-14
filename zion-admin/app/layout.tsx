@@ -17,7 +17,7 @@ const poppins = Poppins({subsets: ['latin'], weight:['400', '800'], style:'itali
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en">
-      <body className=' overflow-x-hidden flex min-h-screen'>
+      <body className=' overflow-hidden flex min-h-screen '>
         <Providers>
           <div className='flex' >
             <div className='min-h-screen w-screen'>

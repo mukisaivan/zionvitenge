@@ -16,7 +16,7 @@ function EditPdt({ id }) {
       <button
         type="button"
         onClick={click}
-          className=" bg-blue-700  px-5 p-1 text-white rounded-lg z-40 relative"
+          className=" bg-blue-700  px-5 p-1 text-white rounded-lg "
         >
         Edit    
         </button>

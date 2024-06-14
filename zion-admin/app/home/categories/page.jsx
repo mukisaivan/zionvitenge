@@ -97,7 +97,7 @@ function Categories({ swal }) {
     });
   }
   return (
-    <>
+    <div className=" relative">
       <h1>Categories</h1>
       <label>
         {editedCategory
@@ -201,7 +201,7 @@ function Categories({ swal }) {
           </tbody>
         </table>
       )}
-    </>
+    </div>
   );
 }
 

@@ -4,13 +4,13 @@ import Availableproducts from './components/availableproducts'
 
 export default function products() {
   return (
-    <>
+    <div className=' relative'>
       <Link href={'/home/products/addproduct'}>
         <button className=' bg-black text-white border rounded-lg p-4'>
           <div>Add Products</div>
         </button>
       </Link>
       <Availableproducts/>
-    </>
+    </div>
   )
 }

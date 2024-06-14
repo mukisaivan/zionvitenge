@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function ZionLogo() {
   return (
-    <header className='sticky top-0 m-6'>
+    <header className='sticky top-0'>
       <Image
         src="/logo1.png"
         alt="Logo"

@@ -83,14 +83,14 @@ export default async function Availableproducts() {
             <tr key={p._id} className={tbasic+tbasic_tr_td}>
               <td className={tbasic+tbasic_tr_td}>
 
-                  <div className="flex justify-center items-center font-bold">
+                  <div className="flex justify-start font-bold">
                     {p.title}
                   </div>
               </td>
               <td className={tbasic+tbasic_tr_td}>{p.description}</td>
               <td className={tbasic+tbasic_tr_td}>{p.price}</td>
               <td className={tbasic+tbasic_tr_td}>
-                  <div className=" gap-5 p-4  px-4 rounded-sm inline-flex mx-1 items-center  text-sm py-1">
+                  <div className=" gap-5 p-4  px-4 rounded-sm inline-flex mx-1 items-center  text-sm py-1 relative">
                       <DeletePdt  id = {p._id}  />
                       <EditPdt id = {p._id}/>
                     </div> 
