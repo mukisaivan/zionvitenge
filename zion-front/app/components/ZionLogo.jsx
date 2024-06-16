@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function ZionLogo() {
   return (
-    <Link href={'/'}>
+
       <>
         <Image
           src="/logo1.png"
@@ -15,6 +15,5 @@ export default function ZionLogo() {
           priority
         />
       </>
-    </Link>
   )
 }

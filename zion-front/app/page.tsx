@@ -1,9 +1,9 @@
-import Header from './Header/page'
+import Header from './header/page'
 
 export default function Home() {
   return (
-    <>
-     <Header/> 
-    </>
+    <div>
+     Home
+    </div>
   );
 }

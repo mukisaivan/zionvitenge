@@ -21,6 +21,8 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
+  height: 80px;
+
 `;
 const StyledNav = styled.nav`
   ${props => props.mobileNavActive ? `
@@ -40,6 +42,7 @@ const StyledNav = styled.nav`
     display: flex;
     position: static;
     padding: 0;
+    
   }
 `;
 const NavLink = styled(Link)`
@@ -65,9 +68,18 @@ const NavButton = styled.button`
   }
 `;
 
+
+
+
 export default function Header() {
   const {cartProducts} = useContext(CartContext);
-  const [mobileNavActive,setMobileNavActive] = useState(false);
+  const [mobileNavActive, setMobileNavActive] = useState(false);
+  
+    const handleNavLinkClick = () => {
+    setMobileNavActive(false);
+  };
+
+
   return (
     <StyledHeader>
       <Center>
@@ -76,10 +88,11 @@ export default function Header() {
             <ZionLogo/>
           </Logo>
           <StyledNav mobileNavActive={mobileNavActive}>
-            <NavLink href={'/'}>Home</NavLink>
-            <NavLink href={'/products'}>All products</NavLink>
-            <NavLink href={'/categories'}>Categories</NavLink>
-            <NavLink href={'/account'}>Account</NavLink>
+            <NavLink href={'/'} onClick={handleNavLinkClick}>Home</NavLink>
+            <NavLink href={'/products'} onClick={handleNavLinkClick}>All products</NavLink>
+            <NavLink href={'/categories'} onClick={handleNavLinkClick}>Categories</NavLink>
+            <NavLink href={'/account'} onClick={handleNavLinkClick}>Account</NavLink>
+            <NavLink href={'/cart'} onClick={handleNavLinkClick}>Cart</NavLink>
           </StyledNav>
           <NavButton onClick={() => setMobileNavActive(prev => !prev)}>
             <BarsIcon />
