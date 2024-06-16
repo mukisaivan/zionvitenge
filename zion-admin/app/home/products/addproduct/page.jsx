@@ -3,7 +3,7 @@ import ProductForm from '../../../components/ProductForm';
 
 export default function page() {
   return (
-    <div className=' relative'>
+    <div>
       <ProductForm />
     </div>
   )

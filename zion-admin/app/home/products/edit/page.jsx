@@ -28,11 +28,11 @@ function EditPage() {
   }
 
   return (
-    <>
+    <div className=''>
       <h1>Edit Product Page</h1>
       <ProductForm/>
 
-    </>
+    </div>
   )
 }
 

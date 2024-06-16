@@ -15,37 +15,27 @@ export default function ProductForm({
   description: existingDescription,
   images: existingImages,
   price: existingPrice,
-  category:assignedCategory,
-  properties:assignedProperties,
+  category: assignedCategory,
+  properties: assignedProperties,
 }) {
   const [title, setTitle] = useState(existingTitle || "");
   const [description, setDescription] = useState(existingDescription || "");
   const [price, setPrice] = useState(existingPrice || "");
   const [images, setImageURLs] = useState(existingImages || []);
   const [productProperties, setProductProperties] = useState(assignedProperties || {});
-  const [category, setCategory] = useState(assignedCategory || '');
+  const [category, setCategory] = useState(assignedCategory || "");
   const [isUploading, setIsUploading] = useState(false);
-  
+
   const [categories, setCategories] = useState([]);
   const [goToProducts, setGoToProducts] = useState(false);
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  // const existingImages = [];
 
   useEffect(() => {
-    setLoading(true);
-    const storedImages = JSON.parse(
-      localStorage.getItem("uploadedImages") || "[]"
-    );
-    setImageURLs(storedImages);
-    setLoading(false);
-  }, []); 
 
-  useEffect(() => {
-    axios.get('/api/categories').then(result => {
+    axios.get("/api/categories").then((result) => {
       setCategories(result.data);
-    })
+    });
   }, []);
 
   function setProductProp(propName, value) {
@@ -73,7 +63,8 @@ export default function ProductForm({
       }
     }
     try {
-      setLoading(true);
+      // setLoading(true);
+      setIsUploading(true);
       const response = await fetch("/api/upload", {
         method: "POST",
         body: formData,
@@ -85,7 +76,9 @@ export default function ProductForm({
         // Save images to storage
         localStorage.setItem("uploadedImages", JSON.stringify(newImages));
       }
-      setLoading(false);
+      // setLoading(false);
+      setIsUploading(false);
+
       console.log(result);
     } catch (error) {
       console.error(
@@ -115,7 +108,7 @@ export default function ProductForm({
         price,
         images,
         category,
-        properties:productProperties
+        properties: productProperties,
       };
 
       if (_id) {
@@ -135,9 +128,9 @@ export default function ProductForm({
     router.refresh();
   }
 
-    function setProductProp(propName,value) {
-    setProductProperties(prev => {
-      const newProductProps = {...prev};
+  function setProductProp(propName, value) {
+    setProductProperties((prev) => {
+      const newProductProps = { ...prev };
       newProductProps[propName] = value;
       return newProductProps;
     });
@@ -145,10 +138,12 @@ export default function ProductForm({
 
   const propertiesToFill = [];
   if (categories.length > 0 && category) {
-    let catInfo = categories.find(({_id}) => _id === category);
+    let catInfo = categories.find(({ _id }) => _id === category);
     propertiesToFill.push(...catInfo.properties);
-    while(catInfo?.parent?._id) {
-      const parentCat = categories.find(({_id}) => _id === catInfo?.parent?._id);
+    while (catInfo?.parent?._id) {
+      const parentCat = categories.find(
+        ({ _id }) => _id === catInfo?.parent?._id
+      );
       propertiesToFill.push(...parentCat.properties);
       catInfo = parentCat;
     }
@@ -194,27 +189,23 @@ export default function ProductForm({
         ))}
       <label>Photos</label>
       <div className="mb-2 flex flex-wrap gap-3">
-        {loading ? (
-          <div className="flex items-center justify-center mt-4">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
-            <RingLoader color="#36d7b7" />
-            <CircleLoader color="#36d7b7" />
-            <span className="ml-2">Loading...</span>
-          </div>
-        ) : (
+        {
           <div className="mt-4 max-h-48 overflow-y-auto">
             <div className="flex flex-wrap gap-2">
               <ReactSortable
                 list={images}
                 setList={updateImagesOrder}
-                className="flex flex-grow gap-2"
+                className="flex flex-grow flex-wrap gap-2"
               >
                 {images.map((url, index) => (
-                  <div key={index} className="relative w-24 h-24 ">
+                  <div
+                    key={index}
+                    className="relative w-24 h-24  bg-white p-4 shadow-sm rounded-sm border border-gray-200"
+                  >
                     <img
                       src={url}
                       alt={`Uploaded file ${index + 1}`}
-                      className="w-full h-full object-cover rounded-lg"
+                      className="rounded-lg h-full object-cover w-screen"
                     />
                     <button
                       type="button"
@@ -239,11 +230,18 @@ export default function ProductForm({
                   </div>
                 ))}
               </ReactSortable>
+              {isUploading && (
+                <div className="h-24 flex items-center">
+                  <CircleLoader color="#FF768B"/>
+                  <RingLoader color="#FF768B"/>
+                  <span className="ml-2">Uploading...</span>
+                </div>
+              )}
             </div>
           </div>
-        )}
+        }
 
-        <label className="w-24 max-h-48 mt-4 bg-slate-300 cursor-pointer text-center flex flex-col items-center justify-center text-sm gap-1 text-primary rounded-sm shadow-sm border border-primary">
+        <label className="w-24 h-24 mt-4 cursor-pointer text-center flex flex-col items-center justify-center text-sm gap-1 text-primary rounded-sm bg-white shadow-sm border">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

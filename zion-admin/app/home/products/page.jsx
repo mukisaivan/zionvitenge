@@ -1,16 +1,18 @@
+
 import React from 'react'
 import Link from 'next/link'
 import Availableproducts from './components/availableproducts'
 
 export default function products() {
+
   return (
-    <div className=' relative'>
+    <div className=''>
       <Link href={'/home/products/addproduct'}>
-        <button className=' bg-black text-white border rounded-lg p-4'>
+        <button className='btn-pink'>
           <div>Add Products</div>
         </button>
       </Link>
-      <Availableproducts/>
+      <Availableproducts />
     </div>
   )
 }

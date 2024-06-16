@@ -9,11 +9,13 @@ export default function Nav({ screenwidth }) {
   const inactiveLink =
     "flex gap-1 p-2 hover:rounded-l-lg hover:bg-white hover:text-black";
   const activeLink =
-    inactiveLink + "rounded-l-lg bg-white text-blue-950 p-4 rounded-l-xl g-4";
+    inactiveLink + "rounded-l-lg bg-white text-blue-950 p-3 rounded-l-xl g-3";
   const activeLinkh =
-    inactiveLink + "rounded-t-xl bg-white text-blue-950 p-4 rounded-t-xl g-4";
-  const inactiveIcon = "w-6 h-6";
+    inactiveLink + "rounded-t-xl bg-white text-blue-950 p-3 rounded-t-xl g-3";
+  const inactiveIcon = "w-4 h-4";
   const activeIcon = inactiveIcon + " text-primary";
+  const inactiveIconv = "w-6 h-6";
+  const activeIconv = inactiveIcon + " text-primary";
   const router = useRouter();
   const { pathname } = router;
   const [activePath, setActivePath] = useState("/");
@@ -28,25 +30,25 @@ export default function Nav({ screenwidth }) {
     await signOut();
   }
 
-  const isMobile = screenwidth <= 768;
+  const isMobile = screenwidth <= 767;
 
   console.log("Current screen width:", screenwidth);
 
   const horizontalNavbar = (
     <>
-      <div
-        className={
-          "top-0 text-gray-500 fixed w-full h-full md:static md:w-auto transition-all z-1000 "
-        }
-      >
-        <nav className={"flex flex-row bg-black text-white "}>
-          <div className="flex flex-col">
-            <div>
+      <div className={"top-0 text-gray-500 fixed w-screen h-full transition-all bg-white"}>
+        <nav className={"flex flex-row bg-white text-white "}>
+          <div className="flex flex-col ">
+           
               <div className="flex justify-center mt-3 ">
                 <ZionLogo />
               </div>
-            </div>
-            <div className={"flex flex-row bg-black text-white w-screen text-sm place-content-center mr-8"}>
+         
+            <div
+              className={
+                "flex flex-row bg-pink-300 text-white w-screen sm:text-[12px] place-content-center "
+              }
+            >
               <Link
                 onClick={() => handleclick("/home")}
                 href={"/home"}
@@ -193,10 +195,10 @@ export default function Nav({ screenwidth }) {
                 </svg>
                 Settings
               </Link>
-           
+
               <button
                 onClick={logout}
-                className="rounded-l-lg hover:bg-white text-white-950 p-2 flex g-4"
+                className="rounded-lg hover:bg-red-600 hover:text-white text-white-950 p-2 flex"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -204,7 +206,7 @@ export default function Nav({ screenwidth }) {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-4 h-4"
                 >
                   <path
                     strokeLinecap="round"
@@ -247,7 +249,7 @@ export default function Nav({ screenwidth }) {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className={pathname === "/" ? activeIcon : inactiveIcon}
+                  className={pathname === "/" ? activeIconv : inactiveIconv}
                 >
                   <path
                     strokeLinecap="round"
@@ -274,9 +276,9 @@ export default function Nav({ screenwidth }) {
                   className={
                     pathname
                       ? pathname.includes("home/products")
-                        ? activeIcon
-                        : inactiveIcon
-                      : inactiveIcon
+                        ? activeIconv
+                        : inactiveIconv
+                      : inactiveIconv
                   }
                 >
                   <path
@@ -304,9 +306,9 @@ export default function Nav({ screenwidth }) {
                   className={
                     pathname
                       ? pathname.includes("/categories")
-                        ? activeIcon
-                        : inactiveIcon
-                      : inactiveIcon
+                        ? activeIconv
+                        : inactiveIconv
+                      : inactiveIconv
                   }
                 >
                   <path
@@ -334,9 +336,9 @@ export default function Nav({ screenwidth }) {
                   className={
                     pathname
                       ? pathname.includes("/orders")
-                        ? activeIcon
-                        : inactiveIcon
-                      : inactiveIcon
+                        ? activeIconv
+                        : inactiveIconv
+                      : inactiveIconv
                   }
                 >
                   <path
@@ -364,9 +366,9 @@ export default function Nav({ screenwidth }) {
                   className={
                     pathname
                       ? pathname.includes("/settings")
-                        ? activeIcon
-                        : inactiveIcon
-                      : inactiveIcon
+                        ? activeIconv
+                        : inactiveIconv
+                      : inactiveIconv
                   }
                 >
                   <path
@@ -407,7 +409,7 @@ export default function Nav({ screenwidth }) {
               </Link>
               <button
                 onClick={logout}
-                className="rounded-l-lg hover:bg-white text-white-950 p-4 flex g-4"
+                className="rounded-l-lg hover:bg-white text-white-950 p-2 flex g-5 "
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -415,7 +417,7 @@ export default function Nav({ screenwidth }) {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-6 h-6 mr-2"
                 >
                   <path
                     strokeLinecap="round"

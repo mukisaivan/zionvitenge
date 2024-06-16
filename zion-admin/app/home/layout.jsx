@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
   }, [screenWidth]);
 
   const isMobile = screenWidth <= 768;
-  const genstyles = " p-5 bg-white  w-screen min-h-screen text-red-600 md:mr-8 mt-[203px] md:mt-9 mb-5"
+  const genstyles = " p-5 bg-white  w-screen min-h-screen text-red-600 md:mr-8 mt-[203px] md:mt-9 mb-5 relative"
   console.log(isMobile);
 
   const { data: session } = useSession();
@@ -45,8 +45,8 @@ export default function RootLayout({ children }) {
   // }
   return (
     <div className="min-h-screen ">
-      <div className={isMobile ? 'flex flex-column gap-0' : 'flex flex-row gap-0'}>
-        <div>
+      <div className={isMobile ? 'flex flex-column gap-0' : 'flex flex-column gap-0'}>
+        <div className="">
           <Nav screenwidth={screenWidth} />
         </div>
           <div className={ isMobile? genstyles :'rounded-xl' +  genstyles}>

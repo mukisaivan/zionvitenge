@@ -1,35 +1,35 @@
 import Footer from './components/footer';
 import Header from './components/header';
 import './globals.css'
-import {Poppins} from "next/font/google"
+import { Poppins } from "next/font/google"
 import { Providers } from './providers/page';
 
 export const metadata = {
   title: 'Zion Vitenge',
-  description: 'The official Zion Website',
+  description: 'Zion Vitenge Official Website',
 };
 
 
-const poppins = Poppins({subsets: ['latin'], weight:['400', '800'], style:'italic'})
+const poppins = Poppins({ subsets: ['latin'], weight: ['400', '800'], style: 'italic' })
 
 
 //for javascript 
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className=' overflow-hidden flex min-h-screen '>
+      <body className=' overflow-x-hidden flex min-h-screen'>
         <Providers>
           <div className='flex' >
-            <div className='min-h-screen w-screen'>
+            <div className='min-h-screen md:w-screen sm:w-full '>
               {children}
             </div>
-            </div>
+          </div>
         </Providers>
       </body>
     </html>
   );
 }
-export  function RootLayoutO({children}: {children: React.ReactNode}) {
+export function RootLayoutO({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={poppins.className}>
@@ -38,7 +38,7 @@ export  function RootLayoutO({children}: {children: React.ReactNode}) {
           <main className=' flex-grow'>
             {children}
           </main>
-          <Footer/>
+          <Footer />
         </div>
       </body>
     </html>
