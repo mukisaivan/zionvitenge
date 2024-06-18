@@ -1,11 +1,11 @@
 "use client";
 import Link from "next/link";
 import styled from "styled-components";
-import Center from "../components/Center";
+import Center from "../app/components/Center";
 import { useContext, useState } from "react";
-import { CartContext } from "../components/CartContext";
-import BarsIcon from "../components/icons/Bars";
-import ZionLogo from "../components/ZionLogo";
+import { CartContext } from "../app/components/CartContext";
+import BarsIcon from "../app/components/icons/Bars";
+import ZionLogo from "../app/components/ZionLogo";
 
 const StyledHeader = styled.header`
   background-color: #222;
@@ -85,20 +85,20 @@ export default function Header() {
             <ZionLogo />
           </Logo>
           <StyledNav $mobileNavActive={mobileNavActive}>
-            <NavLink href={"/"}>
+            <NavLink href={"/"} onClick={handleNavLinkClick}>
               Home
             </NavLink>
-            <NavLink href={"/products"}>
+            <NavLink href={"/products"} onClick={handleNavLinkClick}>
               All products
             </NavLink>
-            <NavLink href={"/categories"}>
+            <NavLink href={"/categories"} onClick={handleNavLinkClick}>
               Categories
             </NavLink>
-            <NavLink href={"/account"}>
+            <NavLink href={"/account"} onClick={handleNavLinkClick}>
               Account
             </NavLink>
-            <NavLink href={"/cart"}>
-              Cart ({cartProducts.length})
+            <NavLink href={"/cart"} onClick={handleNavLinkClick}>
+              Cart
             </NavLink>
           </StyledNav>
           <NavButton onClick={() => setMobileNavActive((prev) => !prev)}>

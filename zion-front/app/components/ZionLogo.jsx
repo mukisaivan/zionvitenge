@@ -9,7 +9,7 @@ export default function ZionLogo() {
       <>
         <Image
           src="/logo1.png"
-          alt="Logo"
+          alt="Zion Logo"
           width={100}
           height={150}
           priority

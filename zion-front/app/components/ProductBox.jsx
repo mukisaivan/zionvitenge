@@ -1,3 +1,4 @@
+'use client'
 import styled from "styled-components";
 import Button from "../components/Button";
 import Link from "next/link";
@@ -64,7 +65,7 @@ export default function ProductBox({_id,title,description,price,images}) {
     <ProductWrapper>
       <WhiteBox href={url}>
         <div>
-          <img src={images?.[0]} alt=""/>
+          <img src={images?.[0]} alt="productimage"/>
         </div>
       </WhiteBox>
       <ProductInfoBox>

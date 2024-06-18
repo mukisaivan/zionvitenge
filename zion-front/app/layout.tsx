@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <CartContextProvider>
-          <Header />
+          <Header/>
           {children}
         </CartContextProvider>
       </body>
