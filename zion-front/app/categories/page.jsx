@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Center from "../components/Center";
@@ -16,6 +17,18 @@ const CategoryTitle = styled.h2`
   margin-bottom: 20px;
 `;
 
+const FooterWrapper = styled.footer`
+  padding: 20px;
+  background-color: #f1f1f1;
+  text-align: center;
+`;
+
+const CategoryLink = styled(Link)`
+  margin: 0 10px;
+  text-decoration: none;
+  color: #333;
+`;
+
 export default function CategoriesPage() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,7 +37,7 @@ export default function CategoriesPage() {
     try {
       const response = await axios.get("/api/categories");
       setCategories(response.data.categories);
-      console.log('++++++Client side category data',response.data.categories);
+      console.log("++++++Client side category data", response.data.categories);
     } catch (error) {
       console.error("Error fetching categories:", error);
     } finally {
@@ -42,12 +55,7 @@ export default function CategoriesPage() {
 
   return (
     <Center>
-      <button
-        className=" block mt-5 rounded-lg bg-red-700 p-6 ml-4"
-        onClick={() => fetchCategories()}
-      >
-        get products
-      </button>
+    
       <Title>All Categories</Title>
       {categories.map((category) => (
         <CategoryWrapper key={category._id}>
@@ -55,14 +63,19 @@ export default function CategoriesPage() {
           <ProductsGrid products={category.products} />
         </CategoryWrapper>
       ))}
-      <>
-        {categories.map((category) => (
-        <CategoryWrapper key={category._id}>
-          <CategoryTitle>{category.name}</CategoryTitle>
-        
-        </CategoryWrapper>
-      ))}
-      </>
+      <FooterWrapper>
+        <h3 className=" text-pink-700">Categories</h3>
+        <div>
+          {categories.map((category) => (
+            <CategoryLink
+              key={category._id}
+              href={`/categories/${category._id}`}
+            >
+              {category.name}
+            </CategoryLink>
+          ))}
+        </div>
+      </FooterWrapper>
     </Center>
   );
 }

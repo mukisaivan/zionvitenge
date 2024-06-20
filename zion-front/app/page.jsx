@@ -3,8 +3,11 @@ import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import bgImage from '../lib/images/bg1.jpeg'
-import Image from "next/image";
+import bgImage2 from '../lib/images/bg2.jpeg'
+import bgImage3 from '../lib/images/bg3.jpeg'
+import bgImage4 from '../lib/images/bg4.jpeg'
 
+import Image from 'next/image';
 
 export default function Home() {
   useEffect(() => {
@@ -13,15 +16,10 @@ export default function Home() {
     });
   }, []);
 
-  return (
-    <div>
-     
-        <title>Zion Vitenge</title>
-        <meta name="description" content="Zion Vitenge Official Website" />
-        <link rel="icon" href="/favicon.ico" />
+  const phoneNumber = '+2540701203389';
 
-      <main className="bg-white">
-        <header className="bg-gray-900 text-white p-5">
+  const possibleheader = (
+    <header className="bg-gray-900 text-white p-5">
           <div className="container mx-auto flex justify-between items-center">
             <h1 className="text-3xl font-bold">African Fashion</h1>
             <nav>
@@ -31,9 +29,17 @@ export default function Home() {
             </nav>
           </div>
         </header>
+  );
 
-    
 
+  return (
+    <div>
+        <title>Zion Vitenge</title>
+        <meta name="description" content="Zion Vitenge Official Website" />
+        <link rel="icon" href="/favicon.ico" />
+
+      <main className="bg-white">
+        
         <section className="relative bg-cover bg-center h-screen" style={{ backgroundImage: `url(${bgImage.src})` }}>
           <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center">
             <div className="text-center text-white">
@@ -48,17 +54,17 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center">Our Collections</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
             <div className="bg-gray-100 p-6 rounded-lg" data-aos="fade-up">
-              <img src="/images/collection1.jpg" alt="Collection 1" className="w-full h-60 object-cover rounded-lg" />
+              <Image src='/images/bg2.jpeg' alt="Collection 1"  width={500} height={240} className="w-full h-60 object-cover rounded-lg" />
               <h3 className="mt-4 text-xl font-semibold">Traditional Wear</h3>
               <p className="mt-2">Explore our range of traditional African garments.</p>
             </div>
             <div className="bg-gray-100 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="200">
-              <img src="/images/collection2.jpg" alt="Collection 2" className="w-full h-60 object-cover rounded-lg" />
+              <Image src='/images/bg3.jpeg' alt="Collection 2" width={500} height={240}  className="w-full h-60 object-cover rounded-lg" />
               <h3 className="mt-4 text-xl font-semibold">Modern Styles</h3>
               <p className="mt-2">Discover contemporary fashion inspired by African culture.</p>
             </div>
             <div className="bg-gray-100 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="400">
-              <img src="/images/collection3.jpg" alt="Collection 3" className="w-full h-60 object-cover rounded-lg" />
+              <Image src='/images/bg4.jpeg' alt="Collection 3"  width={500} height={240} className="w-full h-60 object-cover rounded-lg" />
               <h3 className="mt-4 text-xl font-semibold">Accessories</h3>
               <p className="mt-2">Find unique accessories to complete your look.</p>
             </div>
@@ -91,10 +97,11 @@ export default function Home() {
           </form>
         </section>
 
-        <footer className="bg-gray-900 text-white text-center p-5">
+        <footer className="bg-gray-900 text-white text-center p-5 relative">
           <p>&copy; 2024 African Fashion. All rights reserved.</p>
+          {/* <WhatsAppButton phoneNumber={phoneNumber}/> */}
         </footer>
-      </main>
+      </main> 
     </div>
   );
 }
