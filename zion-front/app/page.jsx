@@ -3,10 +3,23 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import bgImage from "../lib/images/bg1.jpeg";
-
 import Image from "next/image";
 
-export default function Home() {
+
+
+
+export default function Home({featuredProduct, newProducts}) {
+  
+  return (
+    <div>
+
+      <Featured product={featuredProduct} />
+        <NewProducts products={newProducts} />
+    </div>
+    
+  );
+}
+export function Home2() {
   useEffect(() => {
     AOS.init({
       duration: 1200, // Animation duration
