@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import bgImage from "../lib/images/bg1.jpeg";
@@ -9,29 +9,50 @@ import NewProducts from './components/NewProducts'
 
 export default function Home() {
 
+  const [featuredProduct, setfeaturedProduct] = useState([])
+  const [newProducts, setNewProducts] = useState([])
+  // const [data , setdata] = useState({})
+
   async function getfeaturedproductsandnewproducts(){
-    const res = await fetch('http://localhost:3000/api/featuredandnewproducts/', {
+    const res = await fetch('http://localhost:3000/api/featuredandnewproducts', {
       method: 'GET'
     })
-    const responsedata = await res.data()
-    console.log('++++++++++++ client featured product reponse',responsedata);
+    const responsedata = await res.json()
+    // console.log('++++++++++++ reponse', responsedata);
+
+    const { featuredProduct, newProducts } = responsedata 
+
+    // console.log('++++++++++++ featured product reponse', featuredProduct);
+    // console.log('++++++++++++ new Products reponse', newProducts);
+
+    setNewProducts(newProducts)
+    setfeaturedProduct(featuredProduct)
+
+    return responsedata;
   }
+  // const { featuredProduct, newProducts} = 
 
   useEffect(() => {
     getfeaturedproductsandnewproducts()
   }, []);
 
-  const featuredProduct = {
-    _id: 12345,
-    title: 'Mac Book', 
-    description: 'description of the featured product'
-
-  }
+  // const featuredProduct = {
+  //   _id: 12345,
+  //   title: 'Mac Book', 
+  //   description: 'description of the featured product'
+  // }
 
   return (
     <div>
+      {}
       <Featured product={featuredProduct} />
-      {/* <NewProducts products={newProducts} /> */}
+      <NewProducts products={newProducts} />
+        <button
+        className=" block mt-5 rounded-lg bg-red-700 p-6 ml-4"
+        onClick={() => getfeaturedproductsandnewproducts()}
+      >
+        get products
+      </button>
     </div>
   );
 }
