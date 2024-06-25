@@ -4,19 +4,35 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import bgImage from "../lib/images/bg1.jpeg";
 import Image from "next/image";
+import Featured from './components/Featured'
+import NewProducts from './components/NewProducts'
 
+export default function Home() {
 
+  async function getfeaturedproductsandnewproducts(){
+    const res = await fetch('http://localhost:3000/api/featuredandnewproducts/', {
+      method: 'GET'
+    })
+    const responsedata = await res.data()
+    console.log('++++++++++++ client featured product reponse',responsedata);
+  }
 
+  useEffect(() => {
+    getfeaturedproductsandnewproducts()
+  }, []);
 
-export default function Home({featuredProduct, newProducts}) {
-  
+  const featuredProduct = {
+    _id: 12345,
+    title: 'Mac Book', 
+    description: 'description of the featured product'
+
+  }
+
   return (
     <div>
-
       <Featured product={featuredProduct} />
-        <NewProducts products={newProducts} />
+      {/* <NewProducts products={newProducts} /> */}
     </div>
-    
   );
 }
 export function Home2() {
@@ -79,8 +95,6 @@ export function Home2() {
         <section id="collections" className="container mx-auto py-20">
           <h2 className="text-3xl font-bold text-center">Our Collections</h2>
           <div className=" grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
-         
-          
             <div
               className=" relative bg-gray-100 p-6 rounded-lg group"
               data-aos="fade-up"
@@ -94,7 +108,9 @@ export function Home2() {
                 className="w-full object-cover rounded-lg transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white group-hover:opacity-100 transition-opacity duration-500">
-                <h3 className="mt-4 font-semibold mb-2 transition-transform duration-500 group-hover:-translate-y-5">Accessories</h3>
+                <h3 className="mt-4 font-semibold mb-2 transition-transform duration-500 group-hover:-translate-y-5">
+                  Accessories
+                </h3>
                 <p className="mt-2 text-center">
                   Find unique accessories to complete your look hhhhhh.
                 </p>
@@ -113,7 +129,9 @@ export function Home2() {
                 className="w-full object-cover rounded-lg transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white group-hover:opacity-100 transition-opacity duration-500">
-                <h3 className="mt-4 font-semibold mb-2 transition-transform duration-500 group-hover:-translate-y-5">Accessories</h3>
+                <h3 className="mt-4 font-semibold mb-2 transition-transform duration-500 group-hover:-translate-y-5">
+                  Accessories
+                </h3>
                 <p className="mt-2 text-center">
                   Find unique accessories to complete your look.
                 </p>
@@ -134,13 +152,14 @@ export function Home2() {
                 className="w-full object-cover rounded-lg transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white group-hover:opacity-100 transition-opacity duration-500">
-                <h3 className="mt-4 font-semibold mb-2 transition-transform duration-500 group-hover:-translate-y-5">Accessories</h3>
+                <h3 className="mt-4 font-semibold mb-2 transition-transform duration-500 group-hover:-translate-y-5">
+                  Accessories
+                </h3>
                 <p className="mt-2 text-center">
                   Find unique accessories to complete your look.
                 </p>
               </div>
             </div>
-           
           </div>
         </section>
 
