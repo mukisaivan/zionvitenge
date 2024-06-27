@@ -10,7 +10,7 @@ export async function GET() {
   const newProducts = await Product.find({}, null, {sort: {'_id':-1}, limit:10});
   
   // console.log('++++++++++++++++ server featured product', featuredProduct);
-  console.log('++++++++++++++++ new products ', newProducts);
+  // console.log('++++++++++++++++ new products ', featuredProduct);
 
   return NextResponse.json({
     featuredProduct: JSON.parse(JSON.stringify(featuredProduct)),

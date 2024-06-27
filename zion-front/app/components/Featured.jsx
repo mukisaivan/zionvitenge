@@ -71,8 +71,8 @@ export default function Featured({product}) {
               <Title>{product.title}</Title>
               <Desc>{product.description}</Desc>
               <ButtonsWrapper>
-                <ButtonLink href={'/product/'+product._id} outline={1} white={1}>Read more</ButtonLink>
-                <Button white onClick={addFeaturedToCart}>
+                <ButtonLink href={'/product/'+product._id} $outline={1} $white={1}>Read more</ButtonLink>
+                <Button $white onClick={addFeaturedToCart}>
                   <CartIcon />
                   Add to cart
                 </Button>

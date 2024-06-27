@@ -1,11 +1,12 @@
 "use client";
 import Link from "next/link";
 import styled from "styled-components";
-import Center from "../app/components/Center";
-import { useContext, useState } from "react";
-import { CartContext } from "../app/components/CartContext";
-import BarsIcon from "../app/components/icons/Bars";
-import ZionLogo from "../app/components/ZionLogo";
+import Center from "../components/Center";
+import { useContext, useState, useEffect } from "react";
+import { CartContext } from "../components/CartContext";
+import BarsIcon from "../components/icons/Bars";
+import ZionLogo from "../components/ZionLogo";
+import axios from "axios";
 
 const StyledHeader = styled.header`
   background-color: #222;
@@ -69,37 +70,113 @@ const NavButton = styled.button`
   }
 `;
 
+const DropdownContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: #333;
+  a {
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    &:hover {
+      background-color: #555;
+    }
+  }
+`;
+
+const Dropdown = styled.div`
+  display: none;
+  position: absolute;
+  background-color: #444;
+  min-width: 160px;
+  z-index: 1;
+  ${NavLink}:hover & {
+    display: block;
+  }
+  `;
+
 export default function Header() {
   const { cartProducts } = useContext(CartContext);
   const [mobileNavActive, setMobileNavActive] = useState(false);
+  
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  async function fetchCategories() {
+    try {
+      const response = await axios.get("/api/categories");
+      setCategories(response.data.categories);
+      console.log("++++++Client side category data", response.data.categories);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   const handleNavLinkClick = () => {
     setMobileNavActive(false);
   };
 
+
+
+  const categoriesdiv = (
+    <div className="relative" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
+      <NavLink href="/categories">
+        <div className="flex gap-2">
+          Categories
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="size-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="m19.5 8.25-7.5 7.5-7.5-7.5"
+            />
+          </svg>
+        </div>
+      </NavLink>
+
+      {loading && <div>Loading....</div>}
+
+      {isOpen && (
+        
+        <DropdownContent>
+          {categories.map((category) => (
+            <Link key={category._id} href={`/categories/${category._id}`} passHref>
+              <>{category.name}</>
+            </Link>
+          ))}
+        </DropdownContent>
+      )}
+    </div>
+  )
+
+
   return (
     <StyledHeader>
       <Center>
         <Wrapper>
-          <Logo href={"/"}>
+          {/* <Logo href={"/"}>
             <ZionLogo />
-          </Logo>
+          </Logo> */}
           <StyledNav $mobileNavActive={mobileNavActive}>
-            <NavLink href={"/"} onClick={handleNavLinkClick}>
-              Home
-            </NavLink>
-            <NavLink href={"/products"} onClick={handleNavLinkClick}>
-              All products
-            </NavLink>
-            <NavLink href={"/categories"} onClick={handleNavLinkClick}>
-              Categories
-            </NavLink>
-            <NavLink href={"/account"} onClick={handleNavLinkClick}>
-              Account
-            </NavLink>
-            <NavLink href={"/cart"} onClick={handleNavLinkClick}>
-              Cart
-            </NavLink>
+            <NavLink href={"/"}>Home</NavLink>
+            <NavLink href={"/products"}>All products</NavLink>
+           {categoriesdiv}
+            <NavLink href={"/account"}>Account</NavLink>
+            <NavLink href={"/cart"}>Cart ({cartProducts.length})</NavLink>
           </StyledNav>
           <NavButton onClick={() => setMobileNavActive((prev) => !prev)}>
             <BarsIcon />

@@ -30,8 +30,8 @@ const CategoryLink = styled(Link)`
 `;
 
 export default function CategoriesPage() {
-  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = useState([]);
 
   async function fetchCategories() {
     try {
