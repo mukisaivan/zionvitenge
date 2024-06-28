@@ -1,0 +1,29 @@
+.game-button {
+    background-color: #3498db;
+    /* Vibrant blue color */
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    border: 2px solid #2980b9;
+    /* Slightly darker blue for border */
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.game-button:hover {
+    background-color: #2980b9;
+    /* Darker blue on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.game-button:active {
+    background-color: #1c5985;
+    /* Even darker blue on active */
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

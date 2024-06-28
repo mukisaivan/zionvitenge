@@ -6,7 +6,7 @@ import { NextResponse } from 'next/server';
 
 const stripe = require('stripe')(process.env.STRIPE_SK);
 
-export default async function POST(req,res) {
+export async function POST(req,res) {
   if (req.method !== 'POST') {
     NextResponse.json({message: 'should be a POST request'});
     return;

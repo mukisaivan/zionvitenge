@@ -4,6 +4,9 @@ import "./globals.css";
 import Header from "./header/page";
 import { CartContextProvider } from "./components/CartContext";
 import WhatsAppButton from "./components/WhatsAppButton";
+import GameButton from './components/GameButton'
+
+
 // import FooterWrapperComponent from './components/FooterWrapper'
 // export const metadata: Metadata = {
 //   title: "Zion Vitenge",
@@ -24,6 +27,10 @@ export default function RootLayout({ children }) {
 
         <CartContextProvider>
           <Header />
+          <div className=" flex justify-center">
+
+          <GameButton/>
+          </div>
           {children}
            {/* <FooterWrapperComponent/> */}
           <WhatsAppButton phoneNumber={phoneNumber} />
