@@ -1,22 +1,24 @@
-import {mongooseConnect} from "../../../lib/mongoose";
-import {Product} from "../../../models/Product";
-import { Order } from "../../../models/Order";
+import mongooseConnect from "../../../lib/mongoose";
+import  {Order}  from "../../../models/Order";
 import { NextResponse } from 'next/server';
+import Product from "@/models/product";
 
 
 const stripe = require('stripe')(process.env.STRIPE_SK);
 
 export async function POST(req,res) {
-  if (req.method !== 'POST') {
-    NextResponse.json({message: 'should be a POST request'});
-    return;
-  }
+  // const reqdata  = await req.json()
+  // console.log('----------------Request',reqdata);
+  // console.log('----------------Response', resdata);
+
   const {
     name,email,city,
     postalCode,streetAddress,country,
     cartProducts,
-  } = req.body;
+  } = await req.json();
+
   await mongooseConnect();
+  
   const productsIds = cartProducts;
   const uniqueIds = [...new Set(productsIds)];
   const productsInfos = await Product.find({_id:uniqueIds});
@@ -42,6 +44,12 @@ export async function POST(req,res) {
     streetAddress,country,paid:false,
   });
 
+
+  // console.log('-----Order', orderDoc);
+
+  
+
+
   const session = await stripe.checkout.sessions.create({
     line_items,
     mode: 'payment',
@@ -54,5 +62,8 @@ export async function POST(req,res) {
   return NextResponse.json({
     url:session.url,
   })
+  // return NextResponse.json({
+  //   message : 'Still in the server',
+  // })
 
 }

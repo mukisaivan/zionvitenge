@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
           <Header />
           <div className=" flex justify-center">
 
-          <GameButton/>
+          {/* <GameButton/> */}
           </div>
           {children}
            {/* <FooterWrapperComponent/> */}

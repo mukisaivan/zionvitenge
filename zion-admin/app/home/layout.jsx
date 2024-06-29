@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
   }, [screenWidth]);
 
   const isMobile = screenWidth <= 768;
-  const genstyles = " p-5 bg-white  w-screen min-h-screen text-red-600 md:mr-8 mt-[203px] md:mt-9 mb-5 relative"
+  const genstyles = " p-5 bg-white  w-screen min-h-screen text-black md:mr-8 mt-[203px] md:mt-9 mb-5 relative"
   console.log(isMobile);
 
   const { data: session } = useSession();
