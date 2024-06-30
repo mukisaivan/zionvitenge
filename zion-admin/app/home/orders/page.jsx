@@ -32,6 +32,7 @@ export default function page() {
       <table className="basic">
         <thead>
           <tr>
+            <th>Number</th>
             <th>Date</th>
             <th>Paid</th>
             <th>Recipient</th>
@@ -39,8 +40,9 @@ export default function page() {
           </tr>
         </thead>
         <tbody>
-          {orders.length > 0 && orders.map(order => (
+          {orders.length > 0 && orders.map((order,index) => (
             <tr key={order._id}>
+              <td>{index+1}</td>
               <td>{(new Date(order.createdAt)).toLocaleString()}
               </td>
               <td className={order.paid ? 'text-green-600' : 'text-red-600'}>

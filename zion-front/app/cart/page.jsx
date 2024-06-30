@@ -21,6 +21,7 @@ const ColumnsWrapper = styled.div`
 `;
 
 const Box = styled.div`
+
   background-color: #b42020;
   border-radius: 10px;
   padding: 30px;
