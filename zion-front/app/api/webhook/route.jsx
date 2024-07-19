@@ -35,7 +35,8 @@ export async function POST(req, res) {
     console.error(errorMessage);
     return new NextResponse(errorMessage, {status: 400})
   }
-
+    
+    
   // Handle the event
   // switch (event.type) {
   //   case 'checkout.session.completed':
@@ -52,6 +53,7 @@ export async function POST(req, res) {
   //   default:
   //     console.log(`Unhandled event type ${event.type}`);
   // }
+
 
   if (event.type === 'checkout.session.completed') {
     console.log(' +++++++++++++ ++++++++ Payment was successful for user');
